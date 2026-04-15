@@ -1,0 +1,35 @@
+<body style="font-family:'Segoe UI', sans-serif; background:#f0f2f5; margin:0; padding:50px; display:flex; justify-content:center;">
+    <div style="background:white; width:450px; padding:40px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.1); text-align:center;">
+        <a href="/" style="text-decoration:none; color:#666; font-size:14px; display:block; margin-bottom:20px;">← Menüye Dön</a>
+        
+        <h2 style="color:#2c3e50; margin-bottom:30px; border-bottom:2px solid #f9ab00; padding-bottom:10px; display:inline-block;">Geometrik Alan Hesaplama</h2>
+        
+        <form method="POST" style="text-align:left;">
+            <label style="font-weight:bold; color:#555;">Hesaplanacak Şekil:</label>
+            <select name="sekil" style="width:100%; padding:12px; margin:10px 0 20px; border-radius:8px; border:1px solid #ddd; background:#fff;">
+                <option value="ucgen">Üçgen (Taban & Yükseklik)</option>
+                <option value="cokgen">Düzgün Çokgen (Kenar Sayısı & Uzunluk)</option>
+            </select>
+
+            <label style="font-weight:bold; color:#555;">Birinci Değer (Taban / Kenar Sayısı):</label>
+            <input type="number" step="any" name="v1" placeholder="Örn: 3 (Üçgen için taban, Çokgen için kenar sayısı)" required style="width:100%; padding:12px; margin:10px 0 20px; border-radius:8px; border:1px solid #ddd;">
+
+            <label style="font-weight:bold; color:#555;">İkinci Değer (Yükseklik / Kenar Uzunluğu):</label>
+            <input type="number" step="any" name="v2" placeholder="Örn: 10 (Yükseklik veya bir kenarın uzunluğu)" required style="width:100%; padding:12px; margin:10px 0 20px; border-radius:8px; border:1px solid #ddd;">
+
+            <button type="submit" style="width:100%; padding:15px; background:#f9ab00; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer; font-size:16px; transition:0.3s;">
+                Alanı Hesapla
+            </button>
+        </form>
+
+        {% if sonuc %}
+        <div style="margin-top:30px; padding:20px; background:#fff9e6; border-radius:12px; border:1px solid #ffe082;">
+            <h3 style="margin:0; color:#b06000;">Hesaplanan Alan: {{ sonuc }} br²</h3>
+        </div>
+        {% endif %}
+    </div>
+
+    <style>
+        button:hover { background: #e69b00; transform: scale(1.02); }
+    </style>
+</body>

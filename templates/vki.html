@@ -1,0 +1,45 @@
+<body style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#f0f2f5; margin:0; padding:50px; display:flex; justify-content:center;">
+    <div style="background:white; width:450px; padding:40px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.1); text-align:center;">
+        <a href="/" style="text-decoration:none; color:#666; font-size:14px; display:block; margin-bottom:20px;">← Menüye Dön</a>
+        
+        <h2 style="color:#2c3e50; margin-bottom:30px; border-bottom:2px solid #34a853; padding-bottom:10px; display:inline-block;">Gelişmiş VKİ Analizi</h2>
+        
+        <form method="POST" style="text-align:left;">
+            <label style="font-weight:bold; color:#555;">Cinsiyet:</label>
+            <select name="cinsiyet" style="width:100%; padding:12px; margin:10px 0 20px; border-radius:8px; border:1px solid #ddd; background:#fff;">
+                <option>Kadın</option>
+                <option>Erkek</option>
+            </select>
+
+            <div style="display:flex; gap:10px;">
+                <div style="flex:1;">
+                    <label style="font-weight:bold; color:#555;">Boy (cm):</label>
+                    <input type="number" name="boy" placeholder="Örn: 175" required style="width:100%; padding:12px; margin:10px 0 20px; border-radius:8px; border:1px solid #ddd;">
+                </div>
+                <div style="flex:1;">
+                    <label style="font-weight:bold; color:#555;">Kilo (kg):</label>
+                    <input type="number" name="kilo" placeholder="Örn: 70" required style="width:100%; padding:12px; margin:10px 0 20px; border-radius:8px; border:1px solid #ddd;">
+                </div>
+            </div>
+
+            <label style="font-weight:bold; color:#555;">Bel Çevresi (cm):</label>
+            <input type="number" name="bel" placeholder="Örn: 85" required style="width:100%; padding:12px; margin:10px 0 20px; border-radius:8px; border:1px solid #ddd;">
+
+            <button type="submit" style="width:100%; padding:15px; background:#34a853; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer; font-size:16px; transition:0.3s;">
+                Analizi Başlat
+            </button>
+        </form>
+
+        {% if sonuc %}
+        <div style="margin-top:30px; padding:20px; background:#e8f5e9; border-radius:12px; border:1px solid #c8e6c9; animation: fadeIn 0.5s;">
+            <h3 style="margin:0; color:#2e7d32;">{{ sonuc }}</h3>
+            <p style="margin:10px 0 0; color:#1b5e20; font-weight:600;">{{ durum }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <style>
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        button:hover { background: #2d8e47; transform: scale(1.02); }
+    </style>
+</body>

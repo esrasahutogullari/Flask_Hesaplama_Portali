@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Asel Proje | Çok Fonksiyonlu Hesaplama</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; margin: 0; padding: 20px; }
+        .header { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        .card { background: white; width: 320px; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        h2 { font-size: 1.2rem; color: #1a73e8; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        input, select, button { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        button { background: #1a73e8; color: white; border: none; font-weight: bold; cursor: pointer; }
+        button:hover { background: #1557b0; }
+        .res-box { background: #e8f0fe; padding: 10px; border-radius: 6px; margin-top: 10px; text-align: center; font-weight: bold; color: #1a73e8; }
+        .history { margin-top: 15px; font-size: 0.9rem; color: #666; }
+        .hist-item { background: #f9f9f9; padding: 5px; margin-bottom: 3px; border-left: 3px solid #1a73e8; }
+        .error { color: red; text-align: center; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Çok Fonksiyonlu Hesaplama Platformu</h1>
+    </div>
+
+    {% if hata %}<p class="error">{{ hata }}</p>{% endif %}
+
+    <div class="container">
+        <div class="card">
+            <h2>Hesap Makinesi</h2>
+            <form method="POST">
+                <input type="hidden" name="form_tipi" value="hesap_makinesi">
+                <input type="number" step="any" name="sayi1" placeholder="Sayı 1" required>
+                <select name="islem">
+                    <option value="topla">+</option>
+                    <option value="cikar">-</option>
+                    <option value="carp">×</option>
+                    <option value="bol">÷</option>
+                </select>
+                <input type="number" step="any" name="sayi2" placeholder="Sayı 2" required>
+                <button type="submit">Hesapla</button>
+            </form>
+            {% if sonuc is not none %}<div class="res-box">Sonuç: {{ sonuc }}</div>{% endif %}
+            <div class="history">
+                <b>Son İşlemler:</b>
+                {% for i in gecmis %}<div class="hist-item">{{ i }}</div>{% endfor %}
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Vücut Kitle İndeksi</h2>
+            <form method="POST">
+                <input type="hidden" name="form_tipi" value="vki_hesaplayici">
+                <input type="number" name="boy" placeholder="Boy (cm)" required>
+                <input type="number" name="kilo" placeholder="Kilo (kg)" required>
+                <button type="submit" style="background:#34a853">VKI Hesapla</button>
+            </form>
+            {% if vki_sonuc %}<div class="res-box" style="background:#e6f4ea; color:#1e8e3e;">{{ vki_sonuc }} - {{ vki_durum }}</div>{% endif %}
+        </div>
+
+        <div class="card">
+            <h2>Alan Hesaplama</h2>
+            <form method="POST">
+                <input type="hidden" name="form_tipi" value="alan_hesaplayici">
+                <select name="sekil">
+                    <option value="kare">Kare (Kenar girin)</option>
+                    <option value="daire">Daire (Yarıçap girin)</option>
+                </select>
+                <input type="number" step="any" name="kenar" placeholder="Uzunluk" required>
+                <button type="submit" style="background:#f9ab00">Alan Hesapla</button>
+            </form>
+            {% if alan_sonuc %}<div class="res-box" style="background:#fef7e0; color:#b06000;">{{ alan_sonuc }}</div>{% endif %}
+        </div>
+    </div>
+</body>
+</html>
